@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option csharp_namespace = "ImageService";
+
+package imageservice;
+
+// Definimos el servicio de gRPC
+service ImageService {
+  rpc InsertImage (InsertImageRequest) returns (InsertImageResponse);
+      // Obtiene una imagen específica por idAutorLibro
+  rpc ObtenerImagen (ImagenConsultaRequest) returns (ImagenResponse);
+  // Obtiene todas las imágenes
+  rpc ObtenerTodasImagenes (EmptyRequest) returns (ListaImagenesResponse);
+}
+
+// Definimos los mensajes
+message InsertImageRequest {
+    string authorId = 1;
+    bytes image = 2;
+}
+
+message InsertImageResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+//Consultar imagen
+message ImagenConsultaRequest {
+  string authorId = 1;
+}
+
+message ImagenResponse {
+  bytes image = 1;
+  string authorId = 2;
+}
+
+message EmptyRequest {
+}
+
+//Consultar Todas
+message ListaImagenesResponse {
+  repeated ImagenResponse imagenes = 1;
+}
