@@ -24,10 +24,10 @@ builder.Services.AddGrpcClient<ImageService.ImageService.ImageServiceClient>(o =
     o.Address = new Uri("http://localhost:5056"); // Dirección del servicio gRPC
 });
 
-//Cors
 builder.Services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
 builder.Services.AddAutoMapper(typeof(Consulta.Manejador));
 
+//Cors
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
